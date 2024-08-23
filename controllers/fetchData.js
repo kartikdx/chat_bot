@@ -72,7 +72,7 @@ export const scrapeLinks = async (req, res) => {
     const ipResponse = await axios.get("https://api.ipify.org/?format=json");
     const ipAddress = ipResponse.data.ip;
 
-    const aiChatbotDir = path.join(__dirname, "../AIChatbotFile");
+    const aiChatbotDir = path.join(__dirname, "../AIChatbot");
     if (!fs.existsSync(aiChatbotDir)) {
       fs.mkdirSync(aiChatbotDir);
     }
@@ -137,6 +137,7 @@ export const scrapeLinks = async (req, res) => {
       filePath: aggregatedFilePath,
       paragraphs,
       ipAddress,
+      isMatch: false
     });
   } catch (error) {
     console.error("Error fetching the URL:", error);

@@ -6,13 +6,12 @@ import dotenv from "dotenv";
 dotenv.config(); // Load environment variables
 
 const summarizeData = (dataObject) => {
-    // Implement summarization logic here
-    // For example, truncate text fields or remove unnecessary information
-    // This is just a placeholder example
-    const { ipAddress, paragraphs } = dataObject;
-    const summarizedParagraphs = paragraphs.slice(0, 10); // Keep only the first 10 paragraphs
-    return { ipAddress, paragraphs: summarizedParagraphs };
-  };
+  // For example, truncate text fields or remove unnecessary information
+  // This is just a placeholder example
+  const { ipAddress, paragraphs } = dataObject;
+  const summarizedParagraphs = paragraphs.slice(0, 10); // Keep only the first 10 paragraphs
+  return { ipAddress, paragraphs: summarizedParagraphs };
+};
 
 const llm = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",
@@ -32,9 +31,9 @@ export const question = async (req, res) => {
       }
 
       const dataObject = await JSON.parse(data);
-    const summarizedData = summarizeData(dataObject);
+      const summarizedData = summarizeData(dataObject);
 
-    //   const ipAddress = dataObject.ipAddress;
+      //   const ipAddress = dataObject.ipAddress;
       //   console.log(ipAddress);
 
       // Convert the data object to a string
@@ -46,8 +45,8 @@ export const question = async (req, res) => {
         ["human", question],
       ]);
 
-    //   console.log(aiMsg.content);
-      res.send(aiMsg.content)
+      //   console.log(aiMsg.content);
+      res.send(aiMsg.content);
     });
   } catch (error) {
     console.log(error);
