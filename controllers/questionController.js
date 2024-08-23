@@ -41,7 +41,6 @@ export const question = async (req, res) => {
       const dataString = JSON.stringify(summarizedData);
 
       // Construct the prompt using the provided data and question
-      //   const prompt = `Data: ${dataString} Que: ${question}`;
       const aiMsg = await llm.invoke([
         ["system", dataString],
         ["human", question],
